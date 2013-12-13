@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-URL=$1 #https://smi.sp.f-secure.com:443/smi/5.1/services/SubscriptionsService?wsdl
+URL=$1
 FILE_NAME=test.wsdl
 
 #stat -c %s $FILE_NAME

@@ -16,7 +16,7 @@ do
 	rm -f $FILE_NAME
 	echo Size is $s1 bytes
 	if [ "$s1" -le 0 ]; then
-		echo "Test Failed."
+		echo -e "\e[31mTest Failed.\e[0m"
 	else
 		echo "Test Passed " + $s2 + " data downloaded."
 	fi

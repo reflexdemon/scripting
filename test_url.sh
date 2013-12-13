@@ -10,7 +10,7 @@ do
 	curl $URL >$FILE_NAME
 	#stat -c $FILE_NAME
 	#ls -lah $FILE_NAME | awk '{ print $5}'
-	s=$(stat -c $FILE_NAME)
+	s=$(ls -lah $FILE_NAME | awk '{ print $5}')
 
 	rm -f $FILE_NAME
 	echo Size is $s

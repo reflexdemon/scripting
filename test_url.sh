@@ -5,7 +5,7 @@
 FILE_NAME=test.wsdl
 
 
-for ver in ${IEVMS_VERSIONS:-$all_versions}
+for ver in ${URL}
 do
 	curl $URL >$FILE_NAME
 	#stat -c %s $FILE_NAME

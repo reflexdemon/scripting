@@ -7,7 +7,7 @@ FILE_NAME=test.wsdl
 
 for ver in ${URL}
 do
-	curl -s $URL >$FILE_NAME >nul
+	curl $URL >$FILE_NAME >nul
 	#wc -c <  $FILE_NAME
 	#ls -lah $FILE_NAME | awk '{ print $5}'
 	s1=$(wc -c < $FILE_NAME)

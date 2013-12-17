@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+CWE=$1
+COMMENT=$2
+
+
+echo CWE = $CWE
+
+echo COMMENT = $COMMENT
+
+svn commit -m "CWE # / Defect ID: $CWE $COMMENT"
+
+
+

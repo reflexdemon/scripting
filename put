@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+host=$1
+file=$2
+tempfile=/tmp/pushfile
+
+echo -put $file >$tempfile
+echo -bye >>$tempfile
+
+echo dropping $file to $host
+
+sftp -b $tempfile $host
+
+
+

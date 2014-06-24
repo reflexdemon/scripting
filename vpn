@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+command=$1
+
+case $command in
+  (restart) #if MAC has VPN connection issue after sleep.
+  			echo "This operation required elivation as sudo user. Please enter sudo credentials."
+			sudo launchctl stop com.apple.racoon
+			sudo launchctl start com.apple.racoon
+			echo "Done."
+			;;
+	  (*) 	echo "Usage: $0 <command>"
+	  		echo "command 'restart' to restart VPN connection"
+esac

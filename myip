@@ -1,0 +1,35 @@
+#/bin/bash
+
+# email address which is sending the email
+sender="csp_user@domain.com"
+# email address which is receiving the email
+receiver="venkateswara.venkatraman@birch.com"
+# delay time between checks in seconds
+delaytime=1800
+# file to save previous ip address
+oldip=~/.ip.address
+# temp file for email
+tmpemail=/tmp/ip.mail
+
+touch $oldip
+while true; do
+	rm -f $tmpemail
+	echo "To: $receiver" >> $tmpemail
+	echo "From: $sender" >> $tmpemail
+	echo "Subject: My Ip" >> $tmpemail
+	echo "" >> $tmpemail
+	ipaddress=$(ifconfig | grep inet | grep cast)
+	ipaddress2=$(cat $oldip)
+	echo "Is: $ipaddress" >> $tmpemail
+	echo "Was: $ipaddress2" >> $tmpemail
+	echo $ipaddress
+	echo $ipaddress2
+	if [ "$ipaddress" != "$ipaddress2" ]
+		then echo "There different!"
+		cat $tmpemail | mailx -s "my IP" $receiver
+		rm -f $oldip
+		echo $ipaddress >> $oldip
+	fi
+	echo "Continuing..."
+	sleep $delaytime
+done

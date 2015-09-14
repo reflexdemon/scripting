@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+FOLDER=$1
+OPTION=$2
+
+echo "changing dir to $FOLDER"
+cd `pwd`/$FOLDER
+echo "Working in"
+pwd
+
+
+case $OPTION in
+  (js) 
+  		find . -name "*.js" | while IFS= read -r FILE; do
+    		echo "<script src=\"$FILE\"></script>"
+		done
+  		;;
+  (css)
+  		find . -name "*.css" | while IFS= read -r FILE; do
+    		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$FILE\"/>"
+		done
+  ;;
+  (*)
+  	echo "Usage:"
+  	echo "$0 folder js|css"
+	echo "Example:"
+	echo "$0 network/app js"
+esac

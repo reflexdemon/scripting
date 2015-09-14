@@ -22,3 +22,5 @@ then
              | grep -v 'master$' | xargs -I% git push origin :%
    echo "Done!"
 fi
+
+#git branch -r --merged INTEGRATION | sed 's/ *origin\///' | grep -v 'INTEGRATION$' | grep -v 'release*' | grep -v 'sprint\-' | grep -v 'QA'

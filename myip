@@ -1,9 +1,9 @@
 #/bin/bash
 
 # email address which is sending the email
-sender="csp_user@domain.com"
+sender="vprasanna@domain.com"
 # email address which is receiving the email
-receiver="venkateswara.venkatraman@birch.com"
+receiver="reflexdemon@rediffmail.com"
 # delay time between checks in seconds
 delaytime=1800
 # file to save previous ip address

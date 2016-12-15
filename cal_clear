@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+cd ~/Library/Calendars
+
+echo "Current Notifications"
+sqlite3 -echo Calendar\ Cache "select * from ZMESSAGE;"
+echo ""
+echo "Have you closed the Calendar application?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sqlite3 -echo Calendar\ Cache "delete from ZMESSAGE;"; 
+				break;;
+        No ) exit;;
+    esac
+done

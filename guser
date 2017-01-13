@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+ git config  user.name reflexdemon
+ git config  user.email "venkateswara.vp@gmail.com"

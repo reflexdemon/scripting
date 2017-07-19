@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+cd /etc/alternatives
+sudo rm appletviewer
+sudo ln -s /opt/java/current/bin/appletviewer
+sudo rm extcheck
+sudo ln -s /opt/java/current/bin/extcheck
+sudo rm idlj
+sudo ln -s /opt/java/current/bin/idlj
+sudo rm jaotc
+sudo ln -s /opt/java/current/bin/jaotc
+sudo rm jar
+sudo ln -s /opt/java/current/bin/jar
+sudo rm jarsigner
+sudo ln -s /opt/java/current/bin/jarsigner
+sudo rm java
+sudo ln -s /opt/java/current/bin/java
+sudo rm java-rmi.cgi
+sudo ln -s /opt/java/current/bin/java-rmi.cgi
+sudo rm javac
+sudo ln -s /opt/java/current/bin/javac
+sudo rm javadoc
+sudo ln -s /opt/java/current/bin/javadoc
+sudo rm javafxpackager
+sudo ln -s /opt/java/current/bin/javafxpackager
+sudo rm javah
+sudo ln -s /opt/java/current/bin/javah
+sudo rm javap
+sudo ln -s /opt/java/current/bin/javap
+sudo rm javapackager
+sudo ln -s /opt/java/current/bin/javapackager
+sudo rm javaws
+sudo ln -s /opt/java/current/bin/javaws
+sudo rm jcmd
+sudo ln -s /opt/java/current/bin/jcmd
+sudo rm jconsole
+sudo ln -s /opt/java/current/bin/jconsole
+sudo rm jcontrol
+sudo ln -s /opt/java/current/bin/jcontrol
+sudo rm jdb
+sudo ln -s /opt/java/current/bin/jdb
+sudo rm jdeprscan
+sudo ln -s /opt/java/current/bin/jdeprscan
+sudo rm jdeps
+sudo ln -s /opt/java/current/bin/jdeps
+sudo rm jhat
+sudo ln -s /opt/java/current/bin/jhat
+sudo rm jhsdb
+sudo ln -s /opt/java/current/bin/jhsdb
+sudo rm jimage
+sudo ln -s /opt/java/current/bin/jimage
+sudo rm jinfo
+sudo ln -s /opt/java/current/bin/jinfo
+sudo rm jjs
+sudo ln -s /opt/java/current/bin/jjs
+sudo rm jlink
+sudo ln -s /opt/java/current/bin/jlink
+sudo rm jmap
+sudo ln -s /opt/java/current/bin/jmap
+sudo rm jmc
+sudo ln -s /opt/java/current/bin/jmc
+sudo rm jmc.ini
+sudo ln -s /opt/java/current/bin/jmc.ini
+sudo rm jmod
+sudo ln -s /opt/java/current/bin/jmod
+sudo rm jps
+sudo ln -s /opt/java/current/bin/jps
+sudo rm jrunscript
+sudo ln -s /opt/java/current/bin/jrunscript
+sudo rm jsadebugd
+sudo ln -s /opt/java/current/bin/jsadebugd
+sudo rm jshell
+sudo ln -s /opt/java/current/bin/jshell
+sudo rm jstack
+sudo ln -s /opt/java/current/bin/jstack
+sudo rm jstat
+sudo ln -s /opt/java/current/bin/jstat
+sudo rm jstatd
+sudo ln -s /opt/java/current/bin/jstatd
+sudo rm jvisualvm
+sudo ln -s /opt/java/current/bin/jvisualvm
+sudo rm jweblauncher
+sudo ln -s /opt/java/current/bin/jweblauncher
+sudo rm keytool
+sudo ln -s /opt/java/current/bin/keytool
+sudo rm native2ascii
+sudo ln -s /opt/java/current/bin/native2ascii
+sudo rm orbd
+sudo ln -s /opt/java/current/bin/orbd
+sudo rm pack200
+sudo ln -s /opt/java/current/bin/pack200
+sudo rm policytool
+sudo ln -s /opt/java/current/bin/policytool
+sudo rm rmic
+sudo ln -s /opt/java/current/bin/rmic
+sudo rm rmid
+sudo ln -s /opt/java/current/bin/rmid
+sudo rm rmiregistry
+sudo ln -s /opt/java/current/bin/rmiregistry
+sudo rm schemagen
+sudo ln -s /opt/java/current/bin/schemagen
+sudo rm serialver
+sudo ln -s /opt/java/current/bin/serialver
+sudo rm servertool
+sudo ln -s /opt/java/current/bin/servertool
+sudo rm tnameserv
+sudo ln -s /opt/java/current/bin/tnameserv
+sudo rm unpack200
+sudo ln -s /opt/java/current/bin/unpack200
+sudo rm wsgen
+sudo ln -s /opt/java/current/bin/wsgen
+sudo rm wsimport
+sudo ln -s /opt/java/current/bin/wsimport
+sudo rm xjc
+sudo ln -s /opt/java/current/bin/xjc
+
+#New to JKD 9
+cd /usr/bin
+ln -s /etc/alternatives/jaotc
+ln -s /etc/alternatives/javafxpackager
+ln -s /etc/alternatives/javapackager
+ln -s /etc/alternatives/jcontrol
+ln -s /etc/alternatives/jdeprscan
+ln -s /etc/alternatives/jhsdb
+ln -s /etc/alternatives/jimage
+ln -s /etc/alternatives/jlink
+ln -s /etc/alternatives/jmc
+ln -s /etc/alternatives/jmod
+ln -s /etc/alternatives/jshell
+ln -s /etc/alternatives/jvisualvm
+ln -s /etc/alternatives/jweblauncher

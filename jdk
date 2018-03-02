@@ -10,11 +10,11 @@ echo "Requested JDK is $JDK"
 case $JDK in
 	(9)
 		rm /opt/java/current
-		ln -s /opt/java/jdk-9 /opt/java/current
+		ln -s /opt/java/jdk-9.0.1 /opt/java/current
 		;;
 	(*)
   		rm /opt/java/current
-		ln -s /opt/java/jdk1.8.0_131 /opt/java/current
+		ln -s /opt/java/jdk1.8.0_151 /opt/java/current
   		;;
 esac
 

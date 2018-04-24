@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+FILE=$1
+
+TARGET=/tmp/Music
+
+if [ ! -f "$FILE" ]
+then
+    echo "File $FILE does not exist"
+    exit 1
+fi
+
+FILEDIR=$(dirname "$FILE")
+TMP=$(basename "$FILE")
+NAME="${TMP%%.*}"
+
+echo "FILE= $FILE"
+echo "FILEDIR= $FILEDIR"
+echo "NAME= \"$NAME\""
+
+cd $FILEDIR
+pwd
+
+if [ -d "$TARGET/$NAME" ]; then
+   rm -rf "$TARGET/$NAME"
+fi
+
+mkdir -p "$TARGET/$NAME"
+echo "Target: $TARGET/$NAME"
+
+
+
+cat "$FILE" | grep File | awk -F= '{printf $2 "\n"}'>/tmp/TO_COPY
+TOTAL_FILES=$(cat /tmp/TO_COPY | wc -l )
+echo "Total Files to copy $TOTAL_FILES"
+while read fileToCopy; do
+  echo "Copying $FILEDIR/$fileToCopy => $TARGET/$NAME";
+  cp "$FILEDIR/$fileToCopy" "$TARGET/$NAME";
+done </tmp/TO_COPY

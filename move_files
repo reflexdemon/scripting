@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+if [ $# -ne 2 ]
+  then
+    echo "Usage:"
+    echo "$0 folder target"
+    echo "Example:"
+    echo "$0 network/app DestinationDirectory"
+    exit 1;
+fi
+
+FOLDER=$1
+TARGET=$2
+
+echo "changing dir to $FOLDER"
+cd "$FOLDER"
+echo "Working on"
+pwd
+
+for f in *.mp3; do
+    name=`echo "$f"|sed 's/ -.*//'`
+    letter=`echo "$name"|cut -c1`
+    lowercase="$(tr [A-Z] [a-z] <<< "$letter")"
+    dir="$TARGET/$lowercase"
+    mkdir -p "$dir"
+    mv "$f" "$dir"
+done
+

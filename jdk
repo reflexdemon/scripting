@@ -12,6 +12,10 @@ case $JDK in
 		rm /opt/java/current
 		ln -s /opt/java/jdk-9.0.1 /opt/java/current
 		;;
+	(11)
+		rm /opt/java/current
+		ln -s /opt/java/jdk-11.0.1 /opt/java/current
+		;;
 	(*)
   		rm /opt/java/current
 		ln -s /opt/java/jdk1.8.0_151 /opt/java/current

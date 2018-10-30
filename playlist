@@ -38,3 +38,26 @@ while read fileToCopy; do
   echo "Copying $FILEDIR/$fileToCopy => $TARGET/$NAME";
   cp "$FILEDIR/$fileToCopy" "$TARGET/$NAME";
 done </tmp/TO_COPY
+
+
+
+FOLDER="$TARGET/$NAME"
+DEST="/tmp/Car_Songs"
+
+echo "changing dir to $FOLDER"
+cd "$FOLDER"
+echo "Working on"
+pwd
+
+
+for f in *.mp3; do
+    name=`echo "$f"|sed 's/ -.*//'`
+    # echo "Edit Tags for $f as \"$name\""
+    /usr/bin/mid3v2 -D "$f"
+    /usr/bin/mid3v2 -v --TIT3 "$name" "$f"
+    letter=`echo "$name"|cut -c1`
+    lowercase="$(tr [A-Z] [a-z] <<< "$letter")"
+    dir="$DEST/$lowercase"
+    mkdir -p "$dir"
+    mv "$f" "$dir"
+done

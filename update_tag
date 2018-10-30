@@ -1,0 +1,30 @@
+#!/bin/bash
+
+
+FILE=$1
+
+
+if [ ! -f "$FILE" ]
+then
+    echo "File $FILE does not exist"
+    echo "Usage:"
+    echo "find /tmp/Car_Songs -name \"*.mp3\" -exec  ~/scripting/update_tag {} \;"
+    exit 1
+fi
+
+FILEDIR=$(dirname "$FILE")
+TMP=$(basename "$FILE")
+SONG="${TMP%%.*}"
+ALBUM="$(basename "$(dirname "$FILE")")"
+
+# echo "FILE= $FILE"
+# echo "FILEDIR= $FILEDIR"
+# echo "SONG= \"$SONG\""
+# echo "ALBUM= \"$ALBUM\""
+
+
+# echo "Removing all the tags for $FILE"
+/usr/bin/mid3v2 -D "$FILE"
+
+# echo "Adding all  Title as $SONG and Album as $ALBUM"
+/usr/bin/mid3v2 -v -t "$SONG - $ALBUM" -A "$ALBUM" "$FILE"  -g "Tamil"

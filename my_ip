@@ -10,7 +10,7 @@ function update_cf {
      -H "X-Auth-Email: $CF_EMAIL" \
      -H "X-Auth-Key: $CF_API_KEY" \
      -H "Content-Type: application/json" \
-     --data "{\"type\":\"A\",\"name\":\"home\",\"content\":\"${NEW_IP}\",\"ttl\":1,\"proxied\":false}" \
+     --data "{\"type\":\"A\",\"name\":\"home\",\"content\":\"${NEW_IP}\",\"ttl\":1,\"proxied\":true}" \
      -s -o /tmp/cf_response.json
 }
 

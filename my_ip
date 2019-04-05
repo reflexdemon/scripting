@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Usage: CF_EMAIL="youremail@domain.com" CF_API_KEY="yoursecretkey" CF_ZONE_ID="zone_id_if_the_doman_to_be_modified" CF_RECORD_ID="record_id_of_the_entry_to_be_modified" ~/scripting/my_ip
+
+function update_cf {
+  NEW_IP=$1 
+  echo "calling update_cf with $NEW_IP"
+  # PUT zones/:zone_identifier/dns_records/:identifier
+  curl -X PUT "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/dns_records/${CF_RECORD_ID}" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_API_KEY" \
+     -H "Content-Type: application/json" \
+     --data "{\"type\":\"A\",\"name\":\"home\",\"content\":\"${NEW_IP}\",\"ttl\":1,\"proxied\":false}" \
+     -s -o /tmp/cf_response.json
+}
+
+oldip=~/.ip.address
+touch $oldip
+
+
+ipaddress=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
+ipaddress2=$(cat $oldip)
+
+echo "Is: $ipaddress"
+echo "Was: $ipaddress2"
+
+if [ "$ipaddress" != "$ipaddress2" ]
+  then echo "There different!"
+  update_cf $ipaddress
+  rm -f $oldip
+  echo $ipaddress >> $oldip
+fi

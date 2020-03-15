@@ -1,0 +1,14 @@
+# !/bin/bash
+
+# show_vars <search-term>
+# show_vars configURL
+# Note: on Mac if you dont get new lines on sed output replace
+# the default sed using brew install gnu-sed;create alias sed=gsed
+# (or) brew install gnu-sed --with-default-names sed
+function show_vars {
+	readonly term=${1:?"The search-term must be specified."};
+	ps eww $(ps aux| grep -v grep| grep "$term" | awk '{print $2}') | sed s/\ /\\\n/g | grep  '\=';
+}
+
+# export -f show_vars
+# show_vars configURL

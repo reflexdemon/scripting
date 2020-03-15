@@ -2,29 +2,79 @@
 
 # This will require to be executed on an elevated sudo level user
 
+function printUsage() {
+	MESSAGE=$1
+	echo -e "\e[39m"
+	echo -e "Error: \e[31m${MESSAGE}"
+	echo -e "\e[39m"
+	update-alternatives --list java | grep adopt
+	echo -e "\e[39m"
+	echo "For Example:"
+    echo "To switch to JDK 11 use ${0} 11"
+}
+
 JDK=$1
 
+if [ "$#" -eq  "0" ]
+   then
+     printUsage "No arguments supplied. Please use one of the below available alternatives version"
+     exit 1
+ else
+     echo "Requested JDK is $JDK"
+ fi
 
-echo "Requested JDK is $JDK"
 
-case $JDK in
-	(9)
-		rm /opt/java/current
-		ln -s /opt/java/jdk-9.0.1 /opt/java/current
-		;;
-	(11)
-		rm /opt/java/current
-		ln -s /opt/java/jdk-11.0.1 /opt/java/current
-		;;
-	(12)
-		rm /opt/java/current
-		ln -s /opt/java/jdk-12 /opt/java/current
-		;;
-	(*)
-  		rm /opt/java/current
-		ln -s /opt/java/jdk1.8.0_151 /opt/java/current
-  		;;
-esac
+# /usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/java
+# /usr/lib/jvm/adoptopenjdk-13-hotspot-amd64/bin/java
+# /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java
+
+PATH_BASE="/usr/lib/jvm/adoptopenjdk-${JDK}-hotspot-amd64/bin"
+
+
+CHECK_JAVA=$PATH_BASE/java
+if [ ! -f "$CHECK_JAVA" ]
+then
+    printUsage "Requested JDK $JDK has not been installed. Please try to install using\n \$ sudo apt-get install adoptopenjdk-${JDK}-hotspot"
+    exit 1
+fi
+
+
+LOG_FILE=/tmp/.jdk_alternatives.log
+
+COMMANDLIST="jaotc
+jar
+jarsigner
+java
+javac
+javadoc
+javap
+jcmd
+jconsole
+jdb
+jdeprscan
+jdeps
+jhsdb
+jimage
+jinfo
+jlink
+jmap
+jmod
+jps
+jrunscript
+jshell
+jstack
+jstat
+jstatd
+rmic
+serialver"
+
+
+rm -f $LOG_FILE
+for command in ${COMMANDLIST}
+do
+	echo "Setting $command to ${PATH_BASE}/$command" >>$LOG_FILE
+	sudo update-alternatives --set "$command" "${PATH_BASE}/$command" >>$LOG_FILE
+done
 
 java -version
 javac -version

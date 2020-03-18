@@ -13,6 +13,16 @@ function printUsage() {
     echo "To switch to JDK 11 use ${0} 11"
 }
 
+error() {
+  printf '\E[31m'; echo "$@"; printf '\E[0m'
+  printUsage "Permission issue"
+}
+
+if [ "$EUID" -ne 0 ]
+  then error "Please run as root: $ sudo ${0}"
+  exit 1
+fi
+
 JDK=$1
 
 if [ "$#" -eq  "0" ]
@@ -35,12 +45,13 @@ CHECK_JAVA=$PATH_BASE/java
 if [ ! -f "$CHECK_JAVA" ]
 then
     printUsage "Requested JDK $JDK has not been installed. Please try to install using\n \$ sudo apt-get install adoptopenjdk-${JDK}-hotspot"
-    exit 1
+    exit 2
 fi
 
-
+# Log gile location useful for debugging
 LOG_FILE=/tmp/.jdk_alternatives.log
 
+#Common tools that is used frequently
 COMMANDLIST="jaotc
 jar
 jarsigner

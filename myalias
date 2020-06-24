@@ -1,0 +1,17 @@
+alias cleanup_ds_store='find . "-name" ".DS_Store" -exec rm {} \;'
+alias curlp='curl -w "Accesing %{url_effective}\nHTTP Response\t%{response_code}\nTook %{time_total}s to respond to download %{size_download} bytes.\n" -o NUL -s'
+alias dir='ls -ltra'
+alias l='ls -lah'
+alias la='ls -lAh'
+alias li='find . -type f -exec basename {} \;'
+alias ll='ls -ltrah'
+alias md='mkdir -p'
+alias mvn-updates='mvn versions:display-dependency-updates'
+alias pss='ps -ef| grep -v grep| grep '
+alias rd=rmdir
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias printcert="keytool -printcert -file"
+alias message='terminal-notifier -sound default -message'
+alias lsize='du -hs * | sort -rh'
+alias lsize5='du -hs * | sort -rh | head -5'
